@@ -28,3 +28,22 @@ Context: Eroarea de sistem „Login pages unavailable” cauzată de formatarea 
 Problematica: Eroarea critică bloca accesul la paginile de autentificare Google. Variabila de mediu VITE_COGNITO_DOMAIN includea prefixul protocolului (http://), ceea ce genera un conflict în SDK-ul de autentificare.
 Analiza Performanței: Aici, modelul a dat dovadă de o precizie chirurgicală. Deși documentația oficială AWS nu subliniază întotdeauna explicit excluderea protocolului la definirea domeniului de bază în anumite configurații de SDK, AI-ul a identificat corect că VITE_COGNITO_DOMAIN trebuie să fie un șir de caractere de tip FQDN (Fully Qualified Domain Name), fără schema de protocol.
 Impact: Eliminarea manuală a prefixului http:// a restabilit integritatea endpoint-ului, permițând redirecționarea corectă către portalul de login Google.
+
+
+
+AI: Claude Sonnet 4.5 Extended
+
+4: Debug pentru proiectul unificat pe partea de frontend
+Scor: 2/10
+Problema (prompt): Hi there. I have got some pretty weird errors with my Vite + React + TS project. Please look into the files, and tell me: Why exactly does the CSS on the pages look so wrong? And it's only certain pages too, as some work just fine. For example, I tested the localhost:5173/terms, localhost:5173/auth, and localhost:5173/privacy, and they work just fine. But if I for example access the localhost:5173 clear, without any /other-page, in order to effectively make it make me go to the default dashboard page, it shows up like in the image I attached (without CSS, looking quite shitty). Please help me.
+
+5: Planificare pentru unirea tuturor modulelor de Frontend sub un singur proiect
+Scor: 8/10
+Problema (prompt): Hi there. Below is the prompt I gave to another chat with you, hoping that it would jump into action:
+
+"Okay so, up until now, I have bothered you with lots of stuff regarding implementations. Now, we'll switch the task to making the whole project my group has been building work. Attached to this message are all the final versions of all the branches, and right now, mine is inside [AuthTest.zip](http://AuthTest.zip). All the other files were made by other parts of the whole team, and apparently, I am tasked with bringing everything "under the same roof" in the frontend part.
+Can you help me in what exactly will I need to do in order to bring everything together?"
+
+And that instance had begun making me a 30-day plan in how to integrate everything together. The problems are: 1 - I need to do it in 2 days, with this night right now being a hypothetical 3rd day. As for the second problem, it's not really a problem right now so I won't bother you with it. So, that's why I am here. Can you do it?
+
+Linked in this message are both all of the zip files from my part and my colleagues' parts, as well as some files that the previous claude chat had created for me to guide me. I don't quite know the purpose of all these files, but if they help you in bringing the whole frontend part of the project together, then have at them! :3
