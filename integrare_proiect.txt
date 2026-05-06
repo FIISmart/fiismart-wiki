@@ -1,0 +1,30 @@
+AI: Claude Code Sonnet 4.6 Medium effort 
+
+1: Orchestrarea fluxului de User Identity
+Scor: 9/10
+
+Context: Implementarea post-autentificare și maparea atributelor de utilizator.
+
+Problematica: După succesul inițial al handshake-ului cu Google, identitatea utilizatorului era populată cu metadate inconsistente („nume ciudat”). Dilema arhitecturală consta în alegerea între colectarea datelor de profil (nume/prenume) direct din payload-ul Google (via OIDC) sau implementarea unui pas adițional în Frontend pentru introducerea manuală a datelor.
+Analiza Performanței: AI-ul a demonstrat o înțelegere solidă a configurației de login. Recomandarea de a prelua datele direct din Google (Social Identity Provider) este conformă cu bunele practici de UX, reducând frecarea la înregistrare.
+Concluzie: Soluția propusă a fost robustă, necesitând ajustări minime de cod, facilitând o mapare corectă a atributelor în tabelul de utilizatori.
+
+2: Debugging pe Eroarea 401 (Unauthorized) și Navigare AWS
+Scor: 0/10
+
+Context: Investigarea eșecului de autorizare în fluxul OAuth2.
+
+Problematica: Apariția unei erori 401 Unauthorized la nivelul interfeței dintre Google Auth și AWS Cognito.
+Analiza Eșecului: AI-ul a eșuat critic în două direcții. În primul rând, nu a reușit să identifice eroarea de configurare în App Clients sau Domain Name Customization din consola Cognito. În al doilea rând, a oferit instrucțiuni de navigare eronate pentru interfața AWS (hallucination), trimițând utilizatorul către butoane și secțiuni inexistente în versiunea actuală a consolei AWS.
+Rezolvare Externă: Problema a fost localizată manual în setările de permisiuni și Trust Relationships din cadrul AWS Cognito, zonă pe care AI-ul a ignorat-o complet în sugestiile sale de troubleshooting.
+
+
+
+3: Validarea Sintaxei Variabilelor de Mediu (Vite & Cognito)
+Scor: 10/10
+
+Context: Eroarea de sistem „Login pages unavailable” cauzată de formatarea URL-ului.
+
+Problematica: Eroarea critică bloca accesul la paginile de autentificare Google. Variabila de mediu VITE_COGNITO_DOMAIN includea prefixul protocolului (http://), ceea ce genera un conflict în SDK-ul de autentificare.
+Analiza Performanței: Aici, modelul a dat dovadă de o precizie chirurgicală. Deși documentația oficială AWS nu subliniază întotdeauna explicit excluderea protocolului la definirea domeniului de bază în anumite configurații de SDK, AI-ul a identificat corect că VITE_COGNITO_DOMAIN trebuie să fie un șir de caractere de tip FQDN (Fully Qualified Domain Name), fără schema de protocol.
+Impact: Eliminarea manuală a prefixului http:// a restabilit integritatea endpoint-ului, permițând redirecționarea corectă către portalul de login Google.
